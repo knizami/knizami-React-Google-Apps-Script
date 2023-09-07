@@ -47,34 +47,10 @@ const devDialogEntry = './dev/index.js';
 // define client entry points and output names
 const clientEntrypoints = [
   {
-    name: 'CLIENT - Dialog Demo',
-    entry: './src/client/dialog-demo/index.js',
-    filename: 'dialog-demo', // we'll add the .html suffix to these
-    template: './src/client/dialog-demo/index.html',
-  },
-  {
-    name: 'CLIENT - Dialog Demo Bootstrap',
-    entry: './src/client/dialog-demo-bootstrap/index.js',
-    filename: 'dialog-demo-bootstrap',
-    template: './src/client/dialog-demo-bootstrap/index.html',
-  },
-  {
-    name: 'CLIENT - Dialog Demo MUI',
-    entry: './src/client/dialog-demo-mui/index.js',
-    filename: 'dialog-demo-mui',
-    template: './src/client/dialog-demo-mui/index.html',
-  },
-  {
-    name: 'CLIENT - Dialog Demo Tailwind CSS',
-    entry: './src/client/dialog-demo-tailwindcss/index.js',
-    filename: 'dialog-demo-tailwindcss',
-    template: './src/client/dialog-demo-tailwindcss/index.html',
-  },
-  {
-    name: 'CLIENT - Sidebar About Page',
-    entry: './src/client/sidebar-about-page/index.js',
-    filename: 'sidebar-about-page',
-    template: './src/client/sidebar-about-page/index.html',
+    name: 'GHIPA Google Web Apps',
+    entry: './src/client/index/index.js',
+    filename: 'index',
+    template: './src/client/index/index.html',
   },
 ];
 
@@ -147,8 +123,8 @@ const clientConfig = ({ isDevClientWrapper }) => ({
             options: {
               plugins: [
                 !isProd &&
-                  !isDevClientWrapper &&
-                  require.resolve('react-refresh/babel'),
+                !isDevClientWrapper &&
+                require.resolve('react-refresh/babel'),
               ].filter(Boolean),
             },
           },
@@ -166,8 +142,8 @@ const clientConfig = ({ isDevClientWrapper }) => ({
           options: {
             plugins: [
               !isProd &&
-                !isDevClientWrapper &&
-                require.resolve('react-refresh/babel'),
+              !isDevClientWrapper &&
+              require.resolve('react-refresh/babel'),
             ].filter(Boolean),
           },
         },
@@ -221,7 +197,7 @@ const DynamicCdnWebpackPluginConfig = {
           var: 'MaterialUI',
           version: packageVersion,
           url: `https://unpkg.com/@mui/material@${packageVersion}/umd/material-ui.${
-            isProd ? 'production.min.js' : 'development.js'
+              isProd ? 'production.min.js' : 'development.js'
           }`,
         };
       case '@emotion/react':
@@ -238,7 +214,7 @@ const DynamicCdnWebpackPluginConfig = {
           version: packageVersion,
           url: `https://unpkg.com/@emotion/styled@${packageVersion}/dist/emotion-styled.umd.min.js`,
         };
-      // externalize gas-client to keep bundle size even smaller
+        // externalize gas-client to keep bundle size even smaller
       case 'gas-client':
         return {
           name: packageName,
@@ -246,7 +222,7 @@ const DynamicCdnWebpackPluginConfig = {
           version: packageVersion,
           url: `https://unpkg.com/gas-client@${packageVersion}/dist/index.js`,
         };
-      // must include peer dependencies for any custom imports
+        // must include peer dependencies for any custom imports
       case '@types/react':
         return {
           name: packageName,
@@ -254,7 +230,7 @@ const DynamicCdnWebpackPluginConfig = {
           version: packageVersion,
           url: `https://unpkg.com/@types/react@${packageVersion}/index.d.ts`,
         };
-      // return defaults/null depending if Dynamic CDN plugin finds package
+        // return defaults/null depending if Dynamic CDN plugin finds package
       default:
         return moduleDetails;
     }
